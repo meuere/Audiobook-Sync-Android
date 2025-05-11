@@ -13,6 +13,7 @@ androidxLifecycle = "2.8.0"
 androidxMedia3 = "1.3.1"
 composeCompiler = "1.5.12"
 media3Exoplayer = "1.6.1"
+androidxComposeMaterialIcons = "1.6.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -36,6 +37,9 @@ androidx-media3-exoplayer = { group = "androidx.media3", name = "media3-exoplaye
 androidx-media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "androidxMedia3" }
 androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "androidxMedia3" }
 media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3Exoplayer" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.2.1" } # Example, use your actual version/alias
+androidx-material-icons-core = { group = "androidx.compose.material", name = "material-icons-core", version.ref = "androidxComposeMaterialIcons" }
+androidx-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "androidxComposeMaterialIcons" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
