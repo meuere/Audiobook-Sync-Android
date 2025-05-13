@@ -154,8 +154,34 @@ class AudioPlayerViewModel(application: Application) : AndroidViewModel(applicat
     var isSleepTimerRunning by mutableStateOf(false)
         private set
 
-    fun startSleepTimer(minutes: Long) { /* ... existing code ... */ }
-    fun cancelSleepTimer() { /* ... existing code ... */ }
+    fun startSleepTimer(minutes: Long) {    
+        if (minutes <= 0) return
+        
+        cancelSleepTimer() // Cancel any existing timer
+        isSleepTimerRunning = true
+        sleepTimerRemainingSeconds = minutes * 60
+        sleepTimer = object : CountDownTimer(minutes * 60 * 1000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                sleepTimerRemainingSeconds = millisUntilFinished / 1000
+            }
+            override fun onFinish() {
+                if (isPlaying) { // Only pause if it was playing
+                    exoPlayer.pause()
+                }
+                isSleepTimerRunning = false
+                sleepTimerRemainingSeconds = 0
+                // Optionally, reset the input field or give other feedback
+            }
+
+
+        }.start() 
+    }
+
+    fun cancelSleepTimer() { 
+        sleepTimer?.cancel()
+        isSleepTimerRunning = false
+        sleepTimerRemainingSeconds = 0
+    }
 
     override fun onCleared() {
         super.onCleared()
